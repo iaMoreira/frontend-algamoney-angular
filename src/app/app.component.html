@@ -25,4 +25,45 @@
     </div>
 
   </div>
+
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <table datatable [dtOptions]="dtOptions">
+        <thead>
+          <tr>
+            <!-- <th> #ID </th> -->
+            <th> Pessoa </th>
+            <th> Descrição </th>
+            <th  class="col-data"> Vencimento </th>
+            <th  class="col-data"> Pagamento </th>
+            <th  class="col-valor"> Valor </th>
+            <th  class="col-valor"> Ações </th>
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr *ngFor="let l of lancamentos">
+            <!-- <th>{{ l.id }}</th> -->
+            <td>{{ l.pessoa }}</td>
+            <td >{{ l.descricao }}</td>
+            <td class="col-data"> {{ l.dataVencimento }}</td>
+            <td class="col-data">{{ l.dataPagamento }}</td>
+            <td class="col-valor">{{ l.valor }}</td>
+            <td>
+              <a pButton icon="fa-pencil"></a>
+              <button pButton icon="fa-trash"></button>
+            </td>
+          </tr>
+        </tbody>
+
+      </table >
+    </div>
+
+    <div class="ui-g-12">
+      <a pButton label="Novo Lançamento"></a>
+    </div>
+
+  </div>
+
 </div>

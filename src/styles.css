@@ -23,3 +23,13 @@ label{
 
   }
 }
+
+col-valor {
+  width: 120px !important;
+  text-align: right !important;
+}
+
+col-data {
+  width: 120px !important;
+  text-align: center !important;
+}

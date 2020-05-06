@@ -1,10 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'algamoney';
+export class AppComponent implements OnDestroy, OnInit {
+  lancamentos = [
+    { tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: '30/06/2017',
+      dataPagamento: null, valor: 4.55, pessoa: 'Padaria do José' },
+    { tipo: 'RECEITA', descricao: 'Venda de software', dataVencimento: '10/06/2017',
+      dataPagamento: '09/06/2017', valor: 80000, pessoa: 'Atacado Brasil' },
+    { tipo: 'DESPESA', descricao: 'Impostos', dataVencimento: '20/07/2017',
+      dataPagamento: null, valor: 14312, pessoa: 'Ministério da Fazenda' },
+    { tipo: 'DESPESA', descricao: 'Mensalidade de escola', dataVencimento: '05/06/2017',
+      dataPagamento: '30/05/2017', valor: 800, pessoa: 'Escola Abelha Rainha' },
+    { tipo: 'RECEITA', descricao: 'Venda de carro', dataVencimento: '18/08/2017',
+      dataPagamento: null, valor: 55000, pessoa: 'Sebastião Souza' },
+    { tipo: 'DESPESA', descricao: 'Aluguel', dataVencimento: '10/07/2017',
+      dataPagamento: '09/07/2017', valor: 1750, pessoa: 'Casa Nova Imóveis' },
+    { tipo: 'DESPESA', descricao: 'Mensalidade musculação', dataVencimento: '13/07/2017',
+      dataPagamento: null, valor: 180, pessoa: 'Academia Top' }
+  ];
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+
+  ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers'
+    };
+
+    // this.dtTrigger.next(); // atualiza a tabela depois do subscribe
+
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
 }
